@@ -40,7 +40,7 @@ if (!$result1) {
 $data = pg_fetch_row($result);
 $data1 = pg_fetch_row($result1);
 
-var_dump($data1)
+//var_dump($data1)
 ?>
 
 <!DOCTYPE html>
