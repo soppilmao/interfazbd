@@ -23,16 +23,24 @@ if (!empty($comment)) {
 }
 
 $query = "SELECT * FROM movies.película AS p WHERE p.id_película = '$text'";
-
+$query1 = "SELECT * FROM movies.película AS p, movies.servicio_de_streaming AS ss, movies.contiene AS c WHERE p.id_película = '$text' AND p.id_película = c.id_película AND c.nombre_servicio = ss.nombre_servicio";
 $result = pg_query($dbconn, $query);
+$result1 = pg_query($dbconn, $query1);
 
 if (!$result) {
     echo pg_last_error($dbconn);
     exit;
 }
 
-$data = pg_fetch_row($result);
+if (!$result1) {
+    echo pg_last_error($dbconn);
+    exit;
+}
 
+$data = pg_fetch_row($result);
+$data1 = pg_fetch_row($result1);
+
+var_dump($data1)
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +65,8 @@ $data = pg_fetch_row($result);
             <p><b>descripcion:</b> {$data[2]}</p>
             <p><b>año:</b> {$data[3]}</p>
             <p><b>idioma:</b> {$data[4]}</p>
+            <p><b>disponible en:</b> {$data1[5]}</p>
+            <p><b>precio de suscripcion:</b> \${$data1[6]}</p>
         ";
     ?>
     <form id="comments-section" method="POST">
