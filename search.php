@@ -1,9 +1,9 @@
 <?php
 $host = "plop.inf.udec.cl";
 $port = "5432";
-$dbname = "bdi2022aj";
-$user = "bdi2022aj";
-$password = "bdi2022aj";
+$dbname = "user"; //not added
+$user = "user";
+$password = "pass"; //not added
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 $dbconn = pg_connect($connection_string);
 if (!$dbconn) {
